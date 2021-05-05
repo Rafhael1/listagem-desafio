@@ -12,6 +12,7 @@
 
 ## Detalhes
 ### As colunas sao mostradas conforme o valor 'boolean' delas sendo controladas com React Hooks.
+### A tabela é responsiva mas não é mobile friendly (não tem como fazer uma tabela tão larga ser mobile friendly).
 
 | Criado com         |
 |--------------------|
