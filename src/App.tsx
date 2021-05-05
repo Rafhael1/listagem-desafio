@@ -1,26 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Userdata from './components/Userdata/Userdata';
+import Menu from './components/Menu/Menu'
+
+import  { 
+  Container,
+  Table
+ } from 'react-bootstrap';
+
+import './App.css'
+
+const App = () => {
+
+  const [column, setColumn] = useState({
+    first_column: true,
+    second_column: true,
+    third_column: true,
+    fourth_column: true,
+    fifth_column: true,
+    sixth_column: true,
+    seventh_column: true,
+    eighth_column: true,
+  });
+
+  const [lines, setLines] = useState()
+  
+  const UserData: any = Userdata;
+
+    return (
+      <Container>
+        <Table className="MainTable" striped responsive borderless hover variant="light" size="md">
+          <thead>
+            <tr>
+              { column.first_column === true ? <th>N° Cliente</th> : null }
+              { column.second_column === true ?   <th>Cliente</th> : null }
+              { column.third_column === true ? <th>QTD. Chargeback</th> : null }
+              { column.fourth_column === true ? <th>Valor Chargeback</th> : null }
+              { column.fifth_column === true ? <th>QTD. Vendas</th> : null }
+              { column.sixth_column === true ? <th>Valor Total</th> : null }
+              { column.seventh_column === true ? <th>% Chargeback</th> : null }
+              { column.eighth_column === true ? <th>% Total Chargeback</th> : null }
+              <th> 
+                <Menu column={column} setColumn={setColumn} setLines={setLines} lines={lines} /> 
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              UserData.slice(0, lines).map((data: any) => (
+                <tr>
+                  {column.first_column === true ? <td> {data.customer_id} </td> : null}
+                  {column.second_column === true ? <td> {data.customer_name} </td> : null}
+                  {column.third_column === true ? <td> {data.chargeback_quantity} </td> : null}
+                  {column.fourth_column === true ? <td>R$ {data.chargeback_amount} </td> : null}
+                  {column.fifth_column === true ? <td> {data.sales_quantity} </td> : null}
+                  {column.sixth_column === true ? <td>R${data.total_amount.replace('.', ',')}</td> : null}
+                  {column.seventh_column === true ? <td>{data.chargeback_percentage}%</td> : null}
+                  {column.eighth_column === true ? <td>{data.total_chargeback_percentage}%</td> : null}
+                </tr>
+              ))
+            }
+          </tbody>
+        </Table>
+    </Container>
+    );
 }
 
 export default App;
