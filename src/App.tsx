@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 
 import Userdata from './components/Userdata/Userdata';
 import Menu from './components/Menu/Menu'
-
-import GraphUp from './assets/graph-up.svg'
-
 import  { 
   Table
- } from 'react-bootstrap';
+} from 'react-bootstrap';
+
+import GraphUp from './assets/graph-up.svg'
 
 import './App.css'
 
@@ -30,8 +29,8 @@ const App = () => {
 
     return (
       <>
-        <Table className="MainTable" striped responsive borderless hover variant="light" size="md">
-          <thead>
+        <Table className="MainTable"  responsive borderless hover variant="light" size="md">
+           <thead>
             <tr style={{color: '#057f82'}} >
               { column.first_column === true ? <th>N° Cliente</th> : null }
               { column.second_column === true ?   <th>Cliente</th> : null }
