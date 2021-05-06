@@ -32,14 +32,14 @@ const App = () => {
         <Table className="MainTable"  responsive borderless hover variant="light" size="md">
            <thead>
             <tr style={{color: '#057f82'}} >
-              { column.first_column === true ? <th>N° Cliente</th> : null }
-              { column.second_column === true ?   <th>Cliente</th> : null }
-              { column.third_column === true ? <th>QTD. Chargeback</th> : null }
-              { column.fourth_column === true ? <th>Valor Chargeback</th> : null }
-              { column.fifth_column === true ? <th>QTD. Vendas</th> : null }
-              { column.sixth_column === true ? <th>Valor Total</th> : null }
-              { column.seventh_column === true ? <th>% Chargeback</th> : null }
-              { column.eighth_column === true ? <th>% Total Chargeback</th> : null }
+              <th className={ column.first_column === true ? '' : 'hide'} >N° Cliente</th>
+              <th className={ column.second_column === true ? '' : 'hide'} >Cliente</th>
+              <th className={ column.third_column === true ? '' : 'hide'} >QTD. Chargeback</th>
+              <th className={ column.fourth_column === true ? '' : 'hide'} >Valor Chargeback</th>
+              <th className={ column.fifth_column === true ? '' : 'hide'} >QTD. Vendas</th>
+              <th className={ column.sixth_column === true ? '' : 'hide'} >Valor Total</th>
+              <th className={ column.seventh_column === true ? '' : 'hide'} >% Chargeback</th>
+              <th className={ column.eighth_column === true ? '' : 'hide'} >% Total Chargeback</th>
               <th> 
                 <Menu column={column} setColumn={setColumn} setLines={setLines} lines={lines} /> 
               </th>
@@ -49,14 +49,14 @@ const App = () => {
             {
               UserData.slice(0, lines).map((data: any) => (
                 <tr>
-                  {column.first_column === true ? <td> {data.customer_id} </td> : null}
-                  {column.second_column === true ? <td> {data.customer_name} </td> : null}
-                  {column.third_column === true ? <td> {data.chargeback_quantity} </td> : null}
-                  {column.fourth_column === true ? <td>R$ {data.chargeback_amount} </td> : null}
-                  {column.fifth_column === true ? <td> {data.sales_quantity} </td> : null}
-                  {column.sixth_column === true ? <td>R${data.total_amount.replace('.', ',')}</td> : null}
-                  {column.seventh_column === true ? <td style={{color: '#f23249'}} ><img alt="" src={GraphUp} /> {data.chargeback_percentage}%</td> : null}
-                  {column.eighth_column === true ? <td style={{color: '#f23249'}} ><img alt="" src={GraphUp} /> {data.total_chargeback_percentage}%</td> : null}
+                  <td className={column.first_column === true ? '' : 'hide'} > {data.customer_id} </td>
+                  <td className={column.second_column === true ? '' : 'hide'} > {data.customer_name} </td>
+                  <td className={column.third_column === true ? '' : 'hide'} > {data.chargeback_quantity} </td>
+                  <td className={column.fourth_column === true ? '' : 'hide'} > R$ {data.chargeback_amount} </td>
+                  <td className={column.fifth_column === true ? '' : 'hide'} > {data.sales_quantity} </td>
+                  <td className={column.sixth_column === true ? '' : 'hide'} > R${data.total_amount.replace('.', ',')} </td>
+                  <td className={column.seventh_column === true ? '' : 'hide'} style={{color: '#f23249'}} > <img alt="" src={GraphUp} /> {data.chargeback_percentage}% </td>
+                  <td className={column.eighth_column === true ? '' : 'hide'}  style={{color: '#f23249'}} > <img alt="" src={GraphUp} /> {data.total_chargeback_percentage}% </td>
                 </tr>
               ))
             }
